@@ -34,22 +34,23 @@ public class SimpleTestCase {
   public ProcessEngineRule rule = new ProcessEngineRule();
 
   @Test
-  @Deployment(resources = {"testProcess.bpmn"})
+  @Deployment(resources = {"Master.bpmn", "Slave.bpmn"})
   public void shouldExecuteProcess() {
 
     RuntimeService runtimeService = rule.getRuntimeService();
     TaskService taskService = rule.getTaskService();
 
-    ProcessInstance pi = runtimeService.startProcessInstanceByKey("testProcess");
+    ProcessInstance pi = runtimeService.startProcessInstanceByKey("CRM_Adresse_upd");
     assertFalse("Process instance should not be ended", pi.isEnded());
     assertEquals(1, runtimeService.createProcessInstanceQuery().count());
 
+    /*
     Task task = taskService.createTaskQuery().singleResult();
     assertNotNull("Task should exist", task);
 
     // complete the task
     taskService.complete(task.getId());
-
+*/
     // now the process instance should be ended
     assertEquals(0, runtimeService.createProcessInstanceQuery().count());
 
