@@ -12,10 +12,9 @@
       <bpmn2:outgoing>SequenceFlow_1</bpmn2:outgoing>
     </bpmn2:serviceTask>
     <bpmn2:endEvent id="EndEvent_1">
-      <bpmn2:incoming>SequenceFlow_1</bpmn2:incoming>
+      <bpmn2:incoming>SequenceFlow_2</bpmn2:incoming>
       <bpmn2:terminateEventDefinition id="TerminateEventDefinition_1"/>
     </bpmn2:endEvent>
-    <bpmn2:sequenceFlow id="SequenceFlow_1" name="" sourceRef="ServiceTask_1" targetRef="EndEvent_1"/>
     <bpmn2:callActivity id="CallActivity_1" name="Call Slave" calledElement="Isolaction_Check">
       <bpmn2:extensionElements>
         <camunda:in variables="all"/>
@@ -26,12 +25,13 @@
     </bpmn2:callActivity>
     <bpmn2:sequenceFlow id="SequenceFlow_4" name="" sourceRef="CRM_Adresse_upd_start" targetRef="CallActivity_1"/>
     <bpmn2:sequenceFlow id="SequenceFlow_6" name="" sourceRef="CallActivity_1" targetRef="ServiceTask_1"/>
+    <bpmn2:userTask id="UserTask_1" name="Handle &#xA;Request">
+      <bpmn2:incoming>SequenceFlow_1</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_2</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:sequenceFlow id="SequenceFlow_1" name="" sourceRef="ServiceTask_1" targetRef="UserTask_1"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_2" name="" sourceRef="UserTask_1" targetRef="EndEvent_1"/>
   </bpmn2:process>
-  <bpmn2:signal id="Signal_1" name="endProcessUpdateAddresse"/>
-  <bpmn2:signal id="Signal_2" name="checkIsolation"/>
-  <bpmn2:signal id="Signal_3" name="endCheckIsolation"/>
-  <bpmn2:message id="Message_1" name="scriptFinished"/>
-  <bpmn2:message id="Message_2" name="endCheckIsolation"/>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="_Collaboration_7">
       <bpmndi:BPMNShape id="_BPMNShape_Participant_7" bpmnElement="_Participant_2" isHorizontal="true">
@@ -47,18 +47,11 @@
         <dc:Bounds height="80.0" width="100.0" x="468.0" y="61.0"/>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="_BPMNShape_EndEvent_25" bpmnElement="EndEvent_1">
-        <dc:Bounds height="36.0" width="36.0" x="624.0" y="83.0"/>
+        <dc:Bounds height="36.0" width="36.0" x="792.0" y="83.0"/>
         <bpmndi:BPMNLabel>
-          <dc:Bounds height="0.0" width="0.0" x="642.0" y="124.0"/>
+          <dc:Bounds height="0.0" width="0.0" x="810.0" y="124.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_1" bpmnElement="SequenceFlow_1" sourceElement="_BPMNShape_ServiceTask_20" targetElement="_BPMNShape_EndEvent_25">
-        <di:waypoint xsi:type="dc:Point" x="568.0" y="101.0"/>
-        <di:waypoint xsi:type="dc:Point" x="624.0" y="101.0"/>
-        <bpmndi:BPMNLabel>
-          <dc:Bounds height="6.0" width="6.0" x="593.0" y="101.0"/>
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="_BPMNShape_CallActivity_2" bpmnElement="CallActivity_1">
         <dc:Bounds height="80.0" width="100.0" x="264.0" y="61.0"/>
       </bpmndi:BPMNShape>
@@ -74,6 +67,23 @@
         <di:waypoint xsi:type="dc:Point" x="468.0" y="101.0"/>
         <bpmndi:BPMNLabel>
           <dc:Bounds height="6.0" width="6.0" x="425.0" y="101.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_UserTask_2" bpmnElement="UserTask_1">
+        <dc:Bounds height="80.0" width="100.0" x="612.0" y="61.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_1" bpmnElement="SequenceFlow_1" sourceElement="_BPMNShape_ServiceTask_20" targetElement="_BPMNShape_UserTask_2">
+        <di:waypoint xsi:type="dc:Point" x="568.0" y="101.0"/>
+        <di:waypoint xsi:type="dc:Point" x="612.0" y="101.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="6.0" width="6.0" x="598.0" y="101.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_2" bpmnElement="SequenceFlow_2" sourceElement="_BPMNShape_UserTask_2" targetElement="_BPMNShape_EndEvent_25">
+        <di:waypoint xsi:type="dc:Point" x="712.0" y="101.0"/>
+        <di:waypoint xsi:type="dc:Point" x="792.0" y="101.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="6.0" width="6.0" x="749.0" y="101.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
