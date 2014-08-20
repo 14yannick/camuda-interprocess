@@ -4,14 +4,14 @@ This is an example using the Call activity functionality of Camunda.
 
 A dummy delegate is use to follow the execution of the process.
 The expected test result in the console should be.
+```
 INFO: Processing resource Slave.bpmn
 Aug 20, 2014 5:20:34 PM org.camunda.bpm.unittest.DummyDelegate1 execute
 SEVERE: Delegate Slave
 Aug 20, 2014 5:20:34 PM org.camunda.bpm.unittest.DummyDelegate execute
 SEVERE: Delegate Master
 Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.797 sec
-
-
+```
 The test case have been done with the Camunda engune unit test template.
 
 # camunda engine unit test template
