@@ -10,7 +10,7 @@ public class DummyDelegate implements JavaDelegate {
 
     @Override
     public void execute(DelegateExecution arg0) throws Exception {
-      Logger.getLogger(DummyDelegate.class.getName()).log(Level.SEVERE, "Delegate 1", "delegate 1");  
+      Logger.getLogger(DummyDelegate.class.getName()).log(Level.SEVERE, "Delegate Master", "delegate Master");  
 
     }
 
